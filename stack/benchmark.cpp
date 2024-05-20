@@ -8,7 +8,7 @@
 #include "locked.h"
 #include "spinlocked.h"
 #include "lockfree.h"
-
+//ÐÂ¼Ó×¢ÊÍ
 struct LockedElement
 {
     int data;
@@ -113,4 +113,3 @@ int main()
     }
     return 0;
 }
-
