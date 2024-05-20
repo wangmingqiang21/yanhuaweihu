@@ -1,0 +1,34 @@
+version: 2
+name: 未命名项目
+description: ""
+global:
+  concurrent: 10
+trigger:
+  webhook: gitlink@1.0.0
+  event:
+    - ref: push
+      ruleset-operator: AND
+workflow:
+  - ref: start
+    name: 开始
+    task: start
+  - ref: docker_image_build_0
+    name: docker镜像构建
+    task: docker_image_build@1.6.0
+    input:
+      image_name: '""'
+      image_tag: '"latest"'
+      registry_address: '""'
+      docker_file: '"Dockerfile"'
+      docker_build_path: '"."'
+      workspace: '"."'
+      image_push: true
+      build_args: '""'
+    needs:
+      - start
+  - ref: end
+    name: 结束
+    task: end
+    needs:
+      - docker_image_build_0
+
